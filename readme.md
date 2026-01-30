@@ -5,16 +5,20 @@ Normalizes selected WooCommerce product fields during save to ensure consistent 
 ## Key Features
 
 - **Core and meta Fields Normalization**: Trims whitespace, reduces multiple spaces to single spaces, and normalizes line breaks for `post_title`, `post_content`, `post_excerpt`, and other configured fields.
-- **Admin Configuration**: Provides a simple UI to select core and meta fields to normalize and a toggle to enable logging.
+- **Admin Configuration**: Provides a simple UI to select core and meta fields to normalize and a toggle to enable logging, and also provides a dynamic list of meta keys to select from.
 - **Logging**: Integration with WooCommerce logger to record normalized fields per product for audit purposes.
 - **Testing**: Includes a PHPUnit test suite to verify normalization logic (whitespace trimming, line break standardization).
 - **Safe and Extensible**: Uses strict types, namespaces, and object-oriented design with a reusable `FieldNormalizer` class.
+
+## Configuration
+Fields to normalize can be configured in:
+WooCommerce → Field Normalizer
 
 ## Technical Approach
 
 - **Hooks**: Uses `woocommerce_before_product_object_save` to intercept product saves, ensuring compatibility with both simple and variable products.
 - **Normalization**: Implemented in a single reusable `FieldNormalizer` class.
-- **Settings**: Core fields presented as checkboxes to prevent typos; meta fields can be entered manually.
+- **Settings**: Core fields presented as checkboxes to prevent typos; meta fields can be entered manually and dynamically populated from the database.
 - **Autoloading**: Lightweight PSR-4–style autoloader loads plugin classes without external dependencies.
 
 ## How to Test
